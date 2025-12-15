@@ -3,10 +3,10 @@ pipeline {
 
     environment {
         SERVICE        = "result"
-        AWS_ACCOUNT_ID = "085013191936"
+        AWS_ACCOUNT_ID = "218085830935"
         AWS_REGION     = "us-east-1"
         ECR_REPO       = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${SERVICE}"
-        IMAGE          = "${ECR_REPO}:${BRANCH_NAME}"
+        IMAGE          = "${ECR_REPO}:latest"
     }
 
     stages {
@@ -14,7 +14,6 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 sh """
-                    cd result
                     docker build -t ${IMAGE} .
                 """
             }
